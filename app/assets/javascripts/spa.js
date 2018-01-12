@@ -18016,7 +18016,11 @@ var Home = function (_React$Component) {
                   'R. Kyle Kennedy'
                 ),
                 _react2.default.createElement(_skills2.default, null),
-                _react2.default.createElement(_intro2.default, null),
+                _react2.default.createElement(_intro2.default, null)
+              ),
+              _react2.default.createElement(
+                _reactBootstrap.Col,
+                { sm: 1, md: 2 },
                 _react2.default.createElement(_contactMenu2.default, null)
               )
             )

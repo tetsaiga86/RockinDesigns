@@ -25,6 +25,8 @@ class Home extends React.Component {
                 </Skills>
                 <Intro>
                 </Intro>
+              </Col>
+              <Col sm={1} md={2}>
                 <ContactMenu>
                 </ContactMenu>
               </Col>
