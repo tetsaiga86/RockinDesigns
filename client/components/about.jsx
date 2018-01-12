@@ -1,18 +1,12 @@
 import React from 'react'
-
-import {
-  Grid,
-  Row,
-  Clearfix,
-  Col,
-
-} from 'react-bootstrap'
+import Header from './header'
 
 class About extends React.Component{
   render(){
     return(
-      <div>
-        <p>about loaded</p>
+      <div className="about-div">
+        <Header />
+        <h1>about loaded</h1>
       </div>
     )
   }
