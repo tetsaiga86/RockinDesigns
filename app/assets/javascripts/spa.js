@@ -17974,6 +17974,10 @@ var _contactMenu = __webpack_require__(209);
 
 var _contactMenu2 = _interopRequireDefault(_contactMenu);
 
+var _contactForm = __webpack_require__(450);
+
+var _contactForm2 = _interopRequireDefault(_contactForm);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18009,7 +18013,7 @@ var Home = function (_React$Component) {
               null,
               _react2.default.createElement(
                 _reactBootstrap.Col,
-                { sm: 1, md: 2 },
+                null,
                 _react2.default.createElement(
                   'h1',
                   null,
@@ -18020,8 +18024,13 @@ var Home = function (_React$Component) {
               ),
               _react2.default.createElement(
                 _reactBootstrap.Col,
-                { sm: 1, md: 2 },
+                null,
                 _react2.default.createElement(_contactMenu2.default, null)
+              ),
+              _react2.default.createElement(
+                _reactBootstrap.Col,
+                null,
+                _react2.default.createElement(_contactForm2.default, null)
               )
             )
           )
@@ -42355,6 +42364,317 @@ function isReactComponent(component) {
   return !!(component && component.prototype && component.prototype.isReactComponent);
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 450 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _fieldGroup = __webpack_require__(451);
+
+var _fieldGroup2 = _interopRequireDefault(_fieldGroup);
+
+var _reactBootstrap = __webpack_require__(108);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ContactForm = function (_React$Component) {
+  _inherits(ContactForm, _React$Component);
+
+  function ContactForm(props) {
+    _classCallCheck(this, ContactForm);
+
+    var _this = _possibleConstructorReturn(this, (ContactForm.__proto__ || Object.getPrototypeOf(ContactForm)).call(this, props));
+
+    _this.submit = _this.submit.bind(_this);
+    _this.onEditName = _this.createEditHandler('name');
+    _this.onEditEmail = _this.createEditHandler('email');
+    _this.onEditWebsite = _this.createCheckedHandler('website');
+    _this.onEditAndroid = _this.createCheckedHandler('android');
+    _this.onEditWindows = _this.createCheckedHandler('windows');
+    _this.onEditOther = _this.createCheckedHandler('other');
+    _this.onEditDescription = _this.createEditHandler('description');
+    _this.getValidationState = _this.getValidationState.bind(_this);
+    _this.checkValidation = _this.checkValidation.bind(_this);
+
+    _this.state = {
+      name: "",
+      email: "",
+      website: false,
+      android: false,
+      windows: false,
+      other: false,
+      description: ""
+    };
+    return _this;
+  }
+
+  _createClass(ContactForm, [{
+    key: 'submit',
+    value: function submit() {
+      console.log(this.state);
+    }
+  }, {
+    key: 'createEditHandler',
+    value: function createEditHandler(fieldName) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState(_defineProperty({}, fieldName, e.target.value));
+      };
+    }
+  }, {
+    key: 'createCheckedHandler',
+    value: function createCheckedHandler(fieldName) {
+      var _this3 = this;
+
+      return function (e) {
+        _this3.setState(_defineProperty({}, fieldName, e.target.checked));
+      };
+    }
+  }, {
+    key: 'checkValidation',
+    value: function checkValidation(vs) {
+      for (var key in vs) {
+        if (vs[key].state != 'success') {
+          return false;
+        }
+      }
+      return true;
+    }
+  }, {
+    key: 'getValidationState',
+    value: function getValidationState() {
+      var _this4 = this;
+
+      var fieldValidators = {
+        name: {
+          isValid: function isValid(val) {
+            return val.match(/\w+ \w/);
+          },
+          errorMessage: 'Please enter your first and last name.'
+        },
+        email: {
+          isValid: function isValid(val) {
+            return val.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+          },
+          errorMessage: 'Must be a valid email address (this will be used to contact you)'
+        },
+        checkbox: {
+          isValid: function isValid(val) {
+            return _this4.state.website == true || _this4.state.android == true || _this4.state.windows == true || _this4.state.other == true;
+          },
+          errorMessage: 'Please choose at least one option.'
+        },
+        description: {
+          isValid: function isValid(val) {
+            return val.length > 20;
+          },
+          errorMessage: 'Please try to give as much detail as possible, so I may better assist you.'
+        }
+      };
+
+      var validationStates = {};
+
+      Object.keys(fieldValidators).forEach(function (field) {
+        var validator = fieldValidators[field];
+        var value = _this4.state[field];
+
+        if (validator.isValid(value)) {
+          validationStates[field] = { state: 'success' };
+        } else if (!value) {
+          validationStates[field] = { state: null };
+        } else {
+          validationStates[field] = { state: 'error', help: validator.errorMessage };
+        }
+      });
+
+      return validationStates;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var validationStates = this.getValidationState();
+      return _react2.default.createElement(
+        'div',
+        { className: 'contactForm-div' },
+        _react2.default.createElement(
+          _reactBootstrap.Jumbotron,
+          null,
+          _react2.default.createElement(
+            'form',
+            null,
+            _react2.default.createElement(_fieldGroup2.default, {
+              id: 'fg1',
+              type: 'text',
+              label: 'Name',
+              placeholder: 'Your Name',
+              value: this.state.name,
+              onChange: this.onEditName,
+              validationState: validationStates.name.state,
+              help: validationStates.name.help
+            }),
+            _react2.default.createElement(_fieldGroup2.default, {
+              id: 'fg2',
+              type: 'text',
+              label: 'Email',
+              placeholder: 'Your Email',
+              value: this.state.email,
+              onChange: this.onEditEmail,
+              validationState: validationStates.email.state,
+              help: validationStates.email.help
+            }),
+            _react2.default.createElement(
+              _reactBootstrap.FormGroup,
+              null,
+              _react2.default.createElement(
+                _reactBootstrap.ControlLabel,
+                null,
+                'What type of project would you like? (Check all that apply)'
+              ),
+              _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                  _reactBootstrap.Checkbox,
+                  { validationState: validationStates.checkbox.state, defaultChecked: this.state.website, onChange: this.onEditWebsite },
+                  ' Website '
+                ),
+                _react2.default.createElement(
+                  _reactBootstrap.Checkbox,
+                  { validationState: validationStates.checkbox.state, defaultChecked: this.state.android, onChange: this.onEditAndroid },
+                  ' Android App '
+                ),
+                _react2.default.createElement(
+                  _reactBootstrap.Checkbox,
+                  { validationState: validationStates.checkbox.state, defaultChecked: this.state.windows, onChange: this.onEditWindows },
+                  ' Windows App '
+                ),
+                _react2.default.createElement(
+                  _reactBootstrap.Checkbox,
+                  { validationState: validationStates.checkbox.state, defaultChecked: this.state.other, onChange: this.onEditOther },
+                  ' Other '
+                )
+              )
+            ),
+            _react2.default.createElement(_fieldGroup2.default, {
+              id: 'fg2',
+              componentClass: 'textarea',
+              label: 'Project Overview',
+              placeholder: 'What can I do to help?',
+              value: this.state.description,
+              onChange: this.onEditDescription,
+              validationState: validationStates.description.state,
+              help: validationStates.description.help
+            }),
+            _react2.default.createElement(
+              _reactBootstrap.Button,
+              {
+                bsStyle: 'success',
+                onClick: this.submit,
+                disabled: !this.checkValidation(validationStates)
+              },
+              'Submit'
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return ContactForm;
+}(_react2.default.Component);
+
+exports.default = ContactForm;
+
+/***/ }),
+/* 451 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactBootstrap = __webpack_require__(108);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FieldGroup = function (_React$Component) {
+  _inherits(FieldGroup, _React$Component);
+
+  function FieldGroup() {
+    _classCallCheck(this, FieldGroup);
+
+    return _possibleConstructorReturn(this, (FieldGroup.__proto__ || Object.getPrototypeOf(FieldGroup)).apply(this, arguments));
+  }
+
+  _createClass(FieldGroup, [{
+    key: 'render',
+    value: function render() {
+      var newProps = _extends({}, this.props);
+      delete newProps.help;
+      delete newProps.validationState;
+
+      return _react2.default.createElement(
+        _reactBootstrap.FormGroup,
+        { key: newProps.id, controlId: newProps.id, validationState: this.props.validationState },
+        _react2.default.createElement(
+          _reactBootstrap.ControlLabel,
+          null,
+          newProps.label
+        ),
+        _react2.default.createElement(_reactBootstrap.FormControl, newProps),
+        _react2.default.createElement(_reactBootstrap.FormControl.Feedback, null),
+        this.props.help && _react2.default.createElement(
+          _reactBootstrap.HelpBlock,
+          null,
+          this.props.help
+        )
+      );
+    }
+  }]);
+
+  return FieldGroup;
+}(_react2.default.Component);
+
+exports.default = FieldGroup;
 
 /***/ })
 /******/ ]);

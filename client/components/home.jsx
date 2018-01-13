@@ -10,6 +10,7 @@ import Header from './header'
 import Skills from './skills'
 import Intro from './intro'
 import ContactMenu from './contactMenu'
+import ContactForm from './contactForm'
 
 class Home extends React.Component {
   render () {
@@ -19,16 +20,20 @@ class Home extends React.Component {
         <div className="home-div">
           <Grid>
             <Row>
-              <Col sm={1} md={2}>
+              <Col>
                 <h1>R. Kyle Kennedy</h1>
                 <Skills>
                 </Skills>
                 <Intro>
                 </Intro>
               </Col>
-              <Col sm={1} md={2}>
+              <Col>
                 <ContactMenu>
                 </ContactMenu>
+              </Col>
+              <Col>
+                <ContactForm>
+                </ContactForm>
               </Col>
             </Row>
           </Grid>
