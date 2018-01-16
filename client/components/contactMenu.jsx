@@ -1,5 +1,6 @@
 import React from 'react'
-
+import image from '../data/images'
+import link from '../data/links'
 class ContactMenu extends React.Component {
   constructor(props){
     super(props);
@@ -36,8 +37,6 @@ class ContactMenu extends React.Component {
         })
         break;
     }
-
-    // console.log(this.state);
   }
 
   mouseOut(){
@@ -47,36 +46,34 @@ class ContactMenu extends React.Component {
       cn3: 'none',
       cn4: 'none'
     })
-    // console.log(this.state)
   }
 
   render(){
     return(
       <div>
-        <a href="https://www.linkedin.com/in/r-kyle-kennedy-5b7051125/"
-          target="_blank" >
-          <img src="/images/linkedin/ffffff-linkedin-48.ico"
+        <a href={link.linkedin} target="_blank" >
+          <img src={image.linkedin}
             className={this.state.cn1}
             onMouseOver={(e) => this.mouseOver(1, e)}
             onMouseOut={this.mouseOut}
             alt="linkedin" />
         </a>
-        <a href="https://github.com/tetsaiga86" target="_blank">
-          <img src="/images/github/ffffff-github-48.ico"
+        <a href={link.github} target="_blank">
+          <img src={image.github}
             className={this.state.cn2}
             onMouseOver={(e) => this.mouseOver(2, e)}
             onMouseOut={this.mouseOut}
             alt="github" />
         </a>
-        <a href="https://www.facebook.com/elyk.kennedy" target="_blank">
-          <img src="/images/facebook/ffffff-facebook-48.ico"
+        <a href={link.facebook} target="_blank">
+          <img src={image.facebook}
             className={this.state.cn3}
             onMouseOver={(e) => this.mouseOver(3, e)}
             onMouseOut={this.mouseOut}
             alt="facebook" />
         </a>
-        <a href="mailto:r.kyle.kennedy@gmail.com">
-          <img src="/images/message/ffffff-message-48.ico"
+        <a href={link.mail}>
+          <img src={image.mail}
             className={this.state.cn4}
             onMouseOver={(e) => this.mouseOver(4, e)}
             onMouseOut={this.mouseOut}

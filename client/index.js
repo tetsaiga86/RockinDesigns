@@ -14,35 +14,29 @@ function renderComponent(component) {
   );
 }
 
-// page('*', function (context, next) {
-//   ga('set', 'page', context.path);
-//   ga('send', 'pageview');
-//   next();
-// })
+function load(pageName){
+  ReactDOM.unmountComponentAtNode(document.getElementById('app'))
+  renderComponent(pageName);
+}
 
 page('/', function () {
-  ReactDOM.unmountComponentAtNode(document.getElementById('app'))
-  renderComponent(<Home />);
+  load(<Home />);
 });
 
 page('/about', function () {
-  ReactDOM.unmountComponentAtNode(document.getElementById('app'))
-  renderComponent(<About />);
+  load(<About />);
 })
 
 page('/portfolio', function () {
-  ReactDOM.unmountComponentAtNode(document.getElementById('app'))
-  renderComponent(<Portfolio />);
+  load(<Portfolio />);
 })
 
 page('/services', function () {
-  ReactDOM.unmountComponentAtNode(document.getElementById('app'))
-  renderComponent(<Services />);
+  load(<Services />);
 })
 
 page('/resume', function () {
-  ReactDOM.unmountComponentAtNode(document.getElementById('app'))
-  renderComponent(<Resume />);
+  load(<Resume />);
 })
 
 page(window.ENV.route);

@@ -27,18 +27,18 @@ class Header extends React.Component {
   				    <NavItem eventKey={2} href="/portfolio">
   					    Portfolio
       				</NavItem>
-              <NavItem eventKey={2} href="/services">
+              <NavItem eventKey={3} href="/services">
   					    Services
       				</NavItem>
-              <NavItem eventKey={2} href="/resume">
+              <NavItem eventKey={4} href="/resume">
   					    Resume
       				</NavItem>
-      				<NavDropdown eventKey={3} title="Contact" id="basic-nav-dropdown">
-      					<MenuItem eventKey={3.1}>e-mail</MenuItem>
-      					<MenuItem eventKey={3.2}>phone</MenuItem>
-      					<MenuItem eventKey={3.3}>Carrier pidgeon</MenuItem>
+      				<NavDropdown eventKey={5} title="Contact" id="basic-nav-dropdown">
+      					<MenuItem eventKey={5.1}>e-mail</MenuItem>
+      					<MenuItem eventKey={5.2}>phone</MenuItem>
+      					<MenuItem eventKey={5.3}>Carrier pidgeon</MenuItem>
       					<MenuItem divider />
-      					<MenuItem eventKey={3.3}>Separated link</MenuItem>
+      					<MenuItem eventKey={5.4}>Separated link</MenuItem>
       				</NavDropdown>
       			</Nav>
       		</Navbar.Collapse>

@@ -2,46 +2,19 @@ import React from 'react'
 import {
   Button
 } from 'react-bootstrap'
+import toggle from '../util/skillsFunctions/toggle'
 
 class Skills extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      nextTextState:2,
+      currentTextState:1,
       text1:true,
       text2:false,
       text3:false
     }
-    this.toggle = this.toggle.bind(this);
-    setInterval(this.toggle, 2000)
-  }
-
-  toggle(){
-    switch (this.state.nextTextState) {
-      case 1:
-        return this.setState({
-          text1: true,
-          text2: false,
-          text3: false,
-          nextTextState: 2
-        });
-
-      case 2:
-        return this.setState({
-          text1: false,
-          text2: true,
-          text3: false,
-          nextTextState: 3
-        });
-      case 3:
-        return this.setState({
-          text1: false,
-          text2: false,
-          text3: true,
-          nextTextState: 1
-        });
-    }
-
+    this.toggle = toggle.bind(this);
+    setInterval(() => {this.toggle(this)}, 2000);
   }
 
   render(){

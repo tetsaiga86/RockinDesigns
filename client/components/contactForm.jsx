@@ -1,5 +1,10 @@
 import React from 'react'
 import FieldGroup from './fieldGroup'
+import getValidationState from '../util/contactFormFunctions/getValidationState'
+import createEditHandler from '../util/contactFormFunctions/createEditHandler'
+import createCheckedHandler from '../util/contactFormFunctions/createCheckedHandler'
+import checkValidation from '../util/contactFormFunctions/checkValidation'
+import submit from '../util/contactFormFunctions/submit'
 import {
   Button,
   FormGroup,
@@ -12,16 +17,16 @@ import {
 class ContactForm extends React.Component {
   constructor(props){
     super(props);
-    this.submit = this.submit.bind(this);
-    this.onEditName = this.createEditHandler('name');
-    this.onEditEmail = this.createEditHandler('email');
-    this.onEditWebsite = this.createCheckedHandler('website');
-    this.onEditAndroid = this.createCheckedHandler('android');
-    this.onEditWindows = this.createCheckedHandler('windows');
-    this.onEditOther = this.createCheckedHandler('other');
-    this.onEditDescription = this.createEditHandler('description');
-    this.getValidationState = this.getValidationState.bind(this);
-    this.checkValidation = this.checkValidation.bind(this);
+    this.submit = submit.bind(this);
+    this.onEditName = createEditHandler('name', this);
+    this.onEditEmail = createEditHandler('email', this);
+    this.onEditDescription = createEditHandler('description', this);
+    this.onEditWebsite = createCheckedHandler('website', this);
+    this.onEditAndroid = createCheckedHandler('android', this);
+    this.onEditWindows = createCheckedHandler('windows', this);
+    this.onEditOther = createCheckedHandler('other', this);
+    this.getValidationState = getValidationState.bind(this);
+    this.checkValidation = checkValidation.bind(this);
 
     this.state = {
       name: "",
@@ -33,85 +38,6 @@ class ContactForm extends React.Component {
       description: ""
     }
   }
-
-  submit(){
-    console.log(this.state);
-  }
-
-  createEditHandler(fieldName){
-    return (e) => {
-      this.setState({[fieldName]: e.target.value});
-    }
-  }
-
-  createCheckedHandler(fieldName){
-    return (e) => {
-      this.setState({[fieldName]: e.target.checked})
-    }
-  }
-
-  checkValidation(vs){
-    for (var key in vs){
-      if (vs[key].state!='success') {
-        return false
-      }
-    }
-    return true
-  }
-
-  getValidationState(){
-    const fieldValidators = {
-      name: {
-        isValid: (val) => {
-          return val.match(/\w+ \w/)
-        },
-        errorMessage: 'Please enter your first and last name.'
-      },
-      email: {
-        isValid: (val) => {
-          return val.match(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-        },
-        errorMessage: 'Must be a valid email address (this will be used to contact you)'
-      },
-      checkbox: {
-        isValid: (val) => {
-          return this.state.website == true ||
-                 this.state.android == true ||
-                 this.state.windows == true ||
-                 this.state.other == true;
-        },
-        errorMessage: 'Please choose at least one option.'
-      },
-      description: {
-        isValid: (val) => {
-          return val.length > 20
-        },
-        errorMessage: 'Please try to give as much detail as possible, so I may better assist you.'
-      }
-    }
-
-    const validationStates = {};
-
-    Object.keys(fieldValidators).forEach((field) => {
-      const validator = fieldValidators[field];
-      const value = this.state[field];
-
-      if (validator.isValid(value)) {
-        validationStates[field] = { state: 'success' }
-      }
-
-      else if (!value) {
-        validationStates[field] = { state: null }
-      }
-
-      else {
-        validationStates[field] = { state: 'error', help: validator.errorMessage }
-      }
-    });
-
-    return validationStates
-  }
-
 
   render () {
     const validationStates = this.getValidationState();
@@ -164,7 +90,9 @@ class ContactForm extends React.Component {
 
             <Button
               bsStyle='success'
-              onClick={this.submit}
+              onClick={(e) => {
+                this.submit(this, e)
+              }}
               disabled={!this.checkValidation(validationStates)}
               >
               Submit
