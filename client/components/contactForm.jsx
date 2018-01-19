@@ -91,7 +91,7 @@ class ContactForm extends React.Component {
             <Button
               bsStyle='success'
               onClick={(e) => {
-                this.submit(this, e)
+                this.submit(this, '/client', e)
               }}
               disabled={!this.checkValidation(validationStates)}
               >
