@@ -18981,22 +18981,22 @@ var ContactForm = function (_React$Component) {
                 null,
                 _react2.default.createElement(
                   _reactBootstrap.Checkbox,
-                  { validationState: validationStates.checkbox.state, defaultChecked: this.state.website, onChange: this.onEditWebsite },
+                  { checked: this.state.website, validationState: validationStates.checkbox.state, onChange: this.onEditWebsite },
                   ' Website '
                 ),
                 _react2.default.createElement(
                   _reactBootstrap.Checkbox,
-                  { validationState: validationStates.checkbox.state, defaultChecked: this.state.android, onChange: this.onEditAndroid },
+                  { checked: this.state.android, validationState: validationStates.checkbox.state, onChange: this.onEditAndroid },
                   ' Android App '
                 ),
                 _react2.default.createElement(
                   _reactBootstrap.Checkbox,
-                  { validationState: validationStates.checkbox.state, defaultChecked: this.state.windows, onChange: this.onEditWindows },
+                  { checked: this.state.windows, validationState: validationStates.checkbox.state, onChange: this.onEditWindows },
                   ' Windows App '
                 ),
                 _react2.default.createElement(
                   _reactBootstrap.Checkbox,
-                  { validationState: validationStates.checkbox.state, defaultChecked: this.state.other, onChange: this.onEditOther },
+                  { checked: this.state.other, validationState: validationStates.checkbox.state, onChange: this.onEditOther },
                   ' Other '
                 )
               )

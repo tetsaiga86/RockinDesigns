@@ -1,4 +1,6 @@
 class ClientController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
   def new
     client = Client.create(
       name: params[:name],

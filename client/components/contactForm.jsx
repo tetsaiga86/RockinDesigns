@@ -70,10 +70,10 @@ class ContactForm extends React.Component {
             <FormGroup>
               <ControlLabel>What type of project would you like? (Check all that apply)</ControlLabel>
               <div>
-                <Checkbox validationState={validationStates.checkbox.state} defaultChecked={this.state.website} onChange={this.onEditWebsite}> Website </Checkbox>
-                <Checkbox validationState={validationStates.checkbox.state} defaultChecked={this.state.android} onChange={this.onEditAndroid}> Android App </Checkbox>
-                <Checkbox validationState={validationStates.checkbox.state} defaultChecked={this.state.windows} onChange={this.onEditWindows}> Windows App </Checkbox>
-                <Checkbox validationState={validationStates.checkbox.state} defaultChecked={this.state.other} onChange={this.onEditOther}> Other </Checkbox>
+                <Checkbox checked={this.state.website} validationState={validationStates.checkbox.state} onChange={this.onEditWebsite}> Website </Checkbox>
+                <Checkbox checked={this.state.android} validationState={validationStates.checkbox.state} onChange={this.onEditAndroid}> Android App </Checkbox>
+                <Checkbox checked={this.state.windows} validationState={validationStates.checkbox.state} onChange={this.onEditWindows}> Windows App </Checkbox>
+                <Checkbox checked={this.state.other} validationState={validationStates.checkbox.state} onChange={this.onEditOther}> Other </Checkbox>
               </div>
             </FormGroup>
 
