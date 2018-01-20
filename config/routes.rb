@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root to: 'spa#index'
 
-  get '/:spa_route' => 'spa#spa_route'
 
   # TODO: put in admin namespace and restrict access
   #client-Admin
@@ -10,4 +9,6 @@ Rails.application.routes.draw do
 
   #client
   post '/client' => 'client#new'
+
+  get '/:spa_route' => 'spa#spa_route'
 end
