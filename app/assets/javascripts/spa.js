@@ -19324,11 +19324,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactBootstrap = __webpack_require__(58);
 
-var _toggle = __webpack_require__(222);
-
-var _toggle2 = _interopRequireDefault(_toggle);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -19350,14 +19348,40 @@ var Skills = function (_React$Component) {
       text2: false,
       text3: false
     };
-    _this.toggle = _toggle2.default.bind(_this);
-    setInterval(function () {
-      _this.toggle(_this);
+    _this.toggle = _this.toggle.bind(_this);
+    _this.toggleInterval = setInterval(function () {
+      _this.toggle();
     }, 2000);
     return _this;
   }
 
   _createClass(Skills, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      clearInterval(this.toggleInterval);
+    }
+  }, {
+    key: 'nextState',
+    value: function nextState(currentTextState) {
+      var next = currentTextState + 1;
+      if (next > 3) {
+        next = 1;
+      }
+      return next;
+    }
+  }, {
+    key: 'toggle',
+    value: function toggle() {
+      var next = this.nextState(this.state.currentTextState);
+      var propName = 'text' + next;
+      this.setState(_defineProperty({
+        currentTextState: next,
+        text1: false,
+        text2: false,
+        text3: false
+      }, propName, true));
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -19648,39 +19672,7 @@ function submit(This, submitURL) {
 }
 
 /***/ }),
-/* 222 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = toggle;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function nextState(currentTextState) {
-  var next = currentTextState + 1;
-  if (next > 3) {
-    next = 1;
-  }
-  return next;
-}
-
-function toggle(This) {
-  var next = nextState(This.state.currentTextState);
-  var propName = 'text' + next;
-  This.setState(_defineProperty({
-    currentTextState: next,
-    text1: false,
-    text2: false,
-    text3: false
-  }, propName, true));
-}
-
-/***/ }),
+/* 222 */,
 /* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
