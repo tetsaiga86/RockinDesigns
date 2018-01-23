@@ -1,7 +1,7 @@
 require 'httparty'
 
 module Github
-  class Clent
+  class Client
     BASE_URL = 'https://api.github.com/users/tetsaiga86/repos'.freeze
 
     def get_github_repos
