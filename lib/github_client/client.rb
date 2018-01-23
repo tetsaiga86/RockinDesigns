@@ -1,6 +1,6 @@
 require 'httparty'
 
-module Github
+module Github_Client
   class Client
     BASE_URL = 'https://api.github.com/users/tetsaiga86/repos'.freeze
 

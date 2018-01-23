@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #client-Admin
   get '/clients' => 'client#list'
   delete '/client/:id' => 'client#destroy'
+  get '/github' => 'github#show'
 
   #client
   post '/client' => 'client#new'
