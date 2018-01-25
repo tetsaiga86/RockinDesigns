@@ -2,7 +2,7 @@ require 'httparty'
 
 module Github_Client
   class Client
-    BASE_URL = 'https://api.github.com/users/tetsaiga86/repos'.freeze
+    BASE_URL = 'https://api.github.com/users/tetsaiga86/repos?per_page=100'.freeze
 
     def get_github_repos
       request
