@@ -5,14 +5,17 @@ module Github_Client
     BASE_URL = 'https://api.github.com/users/tetsaiga86/repos?per_page=100'.freeze
 
     def get_github_repos
-      request
+      request BASE_URL
     end
 
+    def get_secondary_url url
+      request url
+    end
     private
 
-    def request
+    def request url
       response = with_retry() do
-        HTTParty.get "#{BASE_URL}"
+        HTTParty.get "#{url}"
       end
 
       if response.code == 200
