@@ -14,9 +14,9 @@ function renderComponent(component) {
   );
 }
 
-function load(pageName){
+function load(appComponent){
   ReactDOM.unmountComponentAtNode(document.getElementById('app'))
-  renderComponent(pageName);
+  renderComponent(appComponent);
 }
 
 page('/', function () {
@@ -39,4 +39,5 @@ page('/resume', function () {
   load(<Resume />);
 })
 
+page.start({dispatch: false});
 page(window.ENV.route);
