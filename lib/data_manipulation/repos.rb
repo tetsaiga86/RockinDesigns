@@ -14,7 +14,7 @@ module DataManipulation
     def populate_lang repos
       github_client = ::Github_Client::Client.new
       repos.each do |repo|
-        repo['languages_url'] = github_client.get_secondary_url(repo['languages_url'])
+        repo['languages'] = github_client.get_secondary_url(repo['languages_url'])
       end
     end
   end

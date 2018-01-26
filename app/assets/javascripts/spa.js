@@ -4267,14 +4267,14 @@ module.exports = ReactReconciler;
 var _assign = __webpack_require__(14);
 
 var ReactBaseClasses = __webpack_require__(199);
-var ReactChildren = __webpack_require__(448);
-var ReactDOMFactories = __webpack_require__(449);
+var ReactChildren = __webpack_require__(454);
+var ReactDOMFactories = __webpack_require__(455);
 var ReactElement = __webpack_require__(39);
-var ReactPropTypes = __webpack_require__(451);
-var ReactVersion = __webpack_require__(453);
+var ReactPropTypes = __webpack_require__(457);
+var ReactVersion = __webpack_require__(459);
 
-var createReactClass = __webpack_require__(455);
-var onlyChild = __webpack_require__(457);
+var createReactClass = __webpack_require__(461);
+var onlyChild = __webpack_require__(463);
 
 var createElement = ReactElement.createElement;
 var createFactory = ReactElement.createFactory;
@@ -7258,7 +7258,7 @@ module.exports = canDefineProperty;
 
 exports.__esModule = true;
 
-var _createUncontrollable = __webpack_require__(459);
+var _createUncontrollable = __webpack_require__(465);
 
 var _createUncontrollable2 = _interopRequireDefault(_createUncontrollable);
 
@@ -26541,7 +26541,7 @@ var ReactCompositeComponent = __webpack_require__(381);
 var ReactEmptyComponent = __webpack_require__(177);
 var ReactHostComponent = __webpack_require__(179);
 
-var getNextDebugID = __webpack_require__(456);
+var getNextDebugID = __webpack_require__(462);
 var invariant = __webpack_require__(10);
 var warning = __webpack_require__(11);
 
@@ -27875,7 +27875,7 @@ var ReactCurrentOwner = __webpack_require__(29);
 var ReactComponentTreeHook = __webpack_require__(21);
 var ReactElement = __webpack_require__(39);
 
-var checkReactTypeSpec = __webpack_require__(454);
+var checkReactTypeSpec = __webpack_require__(460);
 
 var canDefineProperty = __webpack_require__(81);
 var getIteratorFn = __webpack_require__(203);
@@ -28497,7 +28497,19 @@ var Portfolio = function (_React$Component) {
         'div',
         { className: 'portfolio-div' },
         _react2.default.createElement(_header2.default, null),
-        this.renderProjects()
+        _react2.default.createElement(
+          _reactBootstrap.Grid,
+          null,
+          _react2.default.createElement(
+            _reactBootstrap.Row,
+            null,
+            _react2.default.createElement(
+              _reactBootstrap.Col,
+              null,
+              this.renderProjects()
+            )
+          )
+        )
       );
     }
   }]);
@@ -29832,6 +29844,12 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactSimpleCard = __webpack_require__(451);
+
+var _getImage = __webpack_require__(467);
+
+var _getImage2 = _interopRequireDefault(_getImage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -29843,13 +29861,36 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ProjectCard = function (_React$Component) {
   _inherits(ProjectCard, _React$Component);
 
-  function ProjectCard() {
+  function ProjectCard(props) {
     _classCallCheck(this, ProjectCard);
 
-    return _possibleConstructorReturn(this, (ProjectCard.__proto__ || Object.getPrototypeOf(ProjectCard)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (ProjectCard.__proto__ || Object.getPrototypeOf(ProjectCard)).call(this, props));
+
+    _this.state = {
+      imageSrc: []
+    };
+    return _this;
   }
 
   _createClass(ProjectCard, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.setState({
+        imageSrc: (0, _getImage2.default)(this.props.repo.languages)
+      });
+    }
+  }, {
+    key: 'renderImages',
+    value: function renderImages() {
+      var _this2 = this;
+
+      var images = [];
+      this.state.imageSrc.forEach(function (imageString, idx) {
+        images.push(_react2.default.createElement('img', { key: _this2.props.repo.id + '_' + idx, className: 'language-img', src: imageString }));
+      });
+      return images;
+    }
+  }, {
     key: 'render',
     value: function render() {
       var repo = this.props.repo;
@@ -29857,9 +29898,28 @@ var ProjectCard = function (_React$Component) {
         'div',
         { className: 'projectCard-div' },
         _react2.default.createElement(
-          'h1',
+          _reactSimpleCard.Card,
           null,
-          repo.name
+          _react2.default.createElement(
+            _reactSimpleCard.CardHeader,
+            null,
+            repo.name
+          ),
+          _react2.default.createElement(
+            _reactSimpleCard.CardBody,
+            null,
+            repo.description
+          ),
+          _react2.default.createElement(
+            _reactSimpleCard.CardFooter,
+            null,
+            _react2.default.createElement(
+              'a',
+              { className: 'github-link', href: repo.html_url, target: '_blank' },
+              'View On Github'
+            ),
+            this.renderImages()
+          )
         )
       );
     }
@@ -52055,6 +52115,276 @@ function showSiblings(container, mountNode) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var defaultStyles = {
+	width: "100%",
+	display: "block",
+	position: "relative",
+	borderRadius: "4px",
+	marginBottom: "10px",
+	border: "1px solid #ccc"
+};
+
+exports.default = function (_ref) {
+	var _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    _ref$bgColor = _ref.bgColor,
+	    bgColor = _ref$bgColor === undefined ? "#fff" : _ref$bgColor,
+	    _ref$fontColor = _ref.fontColor,
+	    fontColor = _ref$fontColor === undefined ? "#000" : _ref$fontColor,
+	    style = _ref.style,
+	    children = _ref.children;
+
+	var styles = _extends({}, defaultStyles, style, {
+		backgroundColor: bgColor,
+		color: fontColor
+	});
+	return _react2.default.createElement(
+		"div",
+		{ className: "card " + className, style: styles },
+		children
+	);
+};
+
+/***/ }),
+/* 447 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var defaultStyles = {
+	padding: "18px"
+};
+
+exports.default = function (_ref) {
+	var _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    style = _ref.style,
+	    children = _ref.children;
+
+	var styles = _extends({}, defaultStyles, style);
+	return _react2.default.createElement(
+		"div",
+		{ className: "card__body " + className, style: styles },
+		children
+	);
+};
+
+/***/ }),
+/* 448 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var defaultStyles = {
+	display: "flex",
+	alignItems: "center",
+	padding: "10px 18px",
+	borderTop: "1px solid #ccc",
+	marginTop: "0"
+};
+
+exports.default = function (_ref) {
+	var style = _ref.style,
+	    children = _ref.children;
+
+	var styles = _extends({}, defaultStyles, style);
+	return _react2.default.createElement(
+		"div",
+		{ className: "card__footer", style: styles },
+		children
+	);
+};
+
+/***/ }),
+/* 449 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var defaultStyles = {
+	display: "flex",
+	alignItems: "center",
+	padding: "10px 18px",
+	borderBottom: "1px solid #ccc",
+	marginBottom: "0"
+};
+
+exports.default = function (_ref) {
+	var style = _ref.style,
+	    children = _ref.children;
+
+	var styles = _extends({}, defaultStyles, style);
+	return _react2.default.createElement(
+		"div",
+		{ className: "card__header", style: styles },
+		children
+	);
+};
+
+/***/ }),
+/* 450 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var defaultStyles = {
+	position: "relative"
+};
+
+var defaultImageStyles = {
+	display: "block",
+	width: "100%",
+	borderRadius: "2px 2px 0 0",
+	position: "relative",
+	left: "0",
+	right: "0",
+	top: "0",
+	bottom: "0"
+};
+
+exports.default = function (_ref) {
+	var style = _ref.style,
+	    imageSrc = _ref.imageSrc,
+	    _ref$alt = _ref.alt,
+	    alt = _ref$alt === undefined ? "" : _ref$alt;
+
+	var styles = _extends({}, defaultStyles, style);
+	return _react2.default.createElement(
+		"div",
+		{ className: "card__header--image", style: styles },
+		_react2.default.createElement("img", { src: imageSrc, style: defaultImageStyles, alt: alt })
+	);
+};
+
+/***/ }),
+/* 451 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Card = __webpack_require__(446);
+
+Object.defineProperty(exports, "Card", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Card).default;
+  }
+});
+
+var _CardHeader = __webpack_require__(449);
+
+Object.defineProperty(exports, "CardHeader", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_CardHeader).default;
+  }
+});
+
+var _CardBody = __webpack_require__(447);
+
+Object.defineProperty(exports, "CardBody", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_CardBody).default;
+  }
+});
+
+var _CardFooter = __webpack_require__(448);
+
+Object.defineProperty(exports, "CardFooter", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_CardFooter).default;
+  }
+});
+
+var _ImageHeader = __webpack_require__(450);
+
+Object.defineProperty(exports, "ImageHeader", {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_ImageHeader).default;
+  }
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 452 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -52113,7 +52443,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 447 */
+/* 453 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52229,7 +52559,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 448 */
+/* 454 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52243,11 +52573,11 @@ module.exports = PooledClass;
 
 
 
-var PooledClass = __webpack_require__(447);
+var PooledClass = __webpack_require__(453);
 var ReactElement = __webpack_require__(39);
 
 var emptyFunction = __webpack_require__(22);
-var traverseAllChildren = __webpack_require__(458);
+var traverseAllChildren = __webpack_require__(464);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -52423,7 +52753,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 449 */
+/* 455 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52596,7 +52926,7 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 450 */
+/* 456 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52625,7 +52955,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 451 */
+/* 457 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52647,7 +52977,7 @@ var factory = __webpack_require__(151);
 module.exports = factory(isValidElement);
 
 /***/ }),
-/* 452 */
+/* 458 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52667,7 +52997,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 453 */
+/* 459 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52684,7 +53014,7 @@ module.exports = ReactPropTypesSecret;
 module.exports = '15.6.2';
 
 /***/ }),
-/* 454 */
+/* 460 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52700,8 +53030,8 @@ module.exports = '15.6.2';
 
 var _prodInvariant = __webpack_require__(51);
 
-var ReactPropTypeLocationNames = __webpack_require__(450);
-var ReactPropTypesSecret = __webpack_require__(452);
+var ReactPropTypeLocationNames = __webpack_require__(456);
+var ReactPropTypesSecret = __webpack_require__(458);
 
 var invariant = __webpack_require__(10);
 var warning = __webpack_require__(11);
@@ -52775,7 +53105,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 455 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52801,7 +53131,7 @@ var factory = __webpack_require__(271);
 module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 
 /***/ }),
-/* 456 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52825,7 +53155,7 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 457 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52867,7 +53197,7 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 458 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52888,7 +53218,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(200);
 
 var getIteratorFn = __webpack_require__(203);
 var invariant = __webpack_require__(10);
-var KeyEscapeUtils = __webpack_require__(446);
+var KeyEscapeUtils = __webpack_require__(452);
 var warning = __webpack_require__(11);
 
 var SEPARATOR = '.';
@@ -53047,7 +53377,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 459 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53067,7 +53397,7 @@ var _invariant = __webpack_require__(101);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _utils = __webpack_require__(460);
+var _utils = __webpack_require__(466);
 
 var utils = _interopRequireWildcard(_utils);
 
@@ -53248,7 +53578,7 @@ function createUncontrollable(mixin, set) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 460 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53369,6 +53699,52 @@ function isReactComponent(component) {
   return !!(component && component.prototype && component.prototype.isReactComponent);
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ }),
+/* 467 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = getImage;
+function getImage(langObj) {
+  var images = [];
+  if (!langObj) {
+    return;
+  };
+  var langArrs = Object.entries(langObj);
+  langArrs.forEach(function (langArr) {
+    var language = langArr[0];
+    switch (language) {
+      case 'JavaScript':
+        images.push('/images/icons/javascript/javascript-original.svg');
+        break;
+      case 'Ruby':
+        images.push('/images/icons/rails/rails-original-wordmark.svg');
+        break;
+      case 'HTML':
+        images.push('/images/icons/html5/html5-original-wordmark.svg');
+        break;
+      case 'CSS':
+        images.push('/images/icons/css3/css3-original-wordmark.svg');
+      case 'Assembly':
+
+        break;
+      case 'Java':
+        images.push('/images/icons/java/java-original-wordmark.svg');
+        break;
+      case 'C#':
+        images.push('/images/icons/csharp/csharp-line.svg');
+        break;
+    }
+  });
+
+  return images;
+}
 
 /***/ })
 /******/ ]);

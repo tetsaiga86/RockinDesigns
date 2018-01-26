@@ -40,7 +40,13 @@ class Portfolio extends React.Component {
     return (
       <div className="portfolio-div">
         <Header />
-        {this.renderProjects()}
+        <Grid>
+          <Row>
+            <Col>
+              {this.renderProjects()}
+            </Col>
+          </Row>
+        </Grid>
       </div>
     )
   }

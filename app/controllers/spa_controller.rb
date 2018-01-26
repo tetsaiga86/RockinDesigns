@@ -1,7 +1,7 @@
 
 class SpaController < ApplicationController
   def index
-    js_env
+    js_env({ route: "/"})
   end
   def spa_route
     js_env({ route: "/#{params[:spa_route]}" })
@@ -12,7 +12,7 @@ class SpaController < ApplicationController
 
   def js_env(values = {})
     @js_env = {
-      
+
     }.merge(values).to_json
   end
 
