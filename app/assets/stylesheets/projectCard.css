@@ -1,0 +1,16 @@
+.language-img{
+  margin: 0;
+  max-height: 2em;
+}
+
+.github-link{
+  margin-right: 1em;
+}
+
+.projectCard-div{
+  max-width: 30em;
+}
+
+.card__header{
+  font-size: 20px;
+}
