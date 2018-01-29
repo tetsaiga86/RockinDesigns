@@ -11,7 +11,7 @@ class ServicesCard extends React.Component  {
   render(){
     var service = this.props.service
     return (
-      <div>
+      <div className='serviceCard-div'>
         <Card>
           <CardHeader>
             {service.name}

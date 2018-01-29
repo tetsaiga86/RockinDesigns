@@ -11,12 +11,12 @@ export default {
   },
   windows: {
     name: 'Windows App Developement',
-    description: 'Build a windows app for your business',
+    description: 'Build a windows app for your business.',
     footer: 'foobar'
   },
   guarantee: {
     name: 'Quality Guarantee',
-    description: "My quality guarantee, is simply that: QUALITY. Any project I put my name on goes through extensive testing to insure the very best in production and thats why I offer free lifetime support for software you've already purchased",
+    description: "My quality guarantee, is simply that: QUALITY. Any project I put my name on goes through extensive testing to insure the very best in production and thats why I offer free lifetime support for software you've already purchased.",
     footer: 'foobar'
   }
 }
