@@ -1,12 +1,15 @@
-import React from 'react'
+import React from 'react';
 import {
   ImageHeader,
   Card,
   CardHeader,
   CardBody,
   CardFooter
-} from "react-simple-card";
-import getImages from '../util/projectCardFunctions/getImage'
+} from 'react-simple-card';
+import {
+  Button
+} from 'react-bootstrap';
+import getImages from '../util/projectCardFunctions/getImage';
 
 class ProjectCard extends React.Component {
   constructor(props){
@@ -42,7 +45,11 @@ class ProjectCard extends React.Component {
             {repo.description}
           </CardBody>
           <CardFooter>
-            <a className='github-link' href={repo.html_url} target="_blank" >View On Github</a>
+            <a className='github-link' href={repo.html_url} target="_blank" >
+              <Button bsStyle="primary">
+                View On Github
+              </Button>
+            </a>
             {this.renderImages()}
           </CardFooter>
         </Card>
