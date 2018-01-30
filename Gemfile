@@ -59,3 +59,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #added rubygems
 gem 'httparty'
+gem 'figaro', '~> 1.1', '>= 1.1.1'

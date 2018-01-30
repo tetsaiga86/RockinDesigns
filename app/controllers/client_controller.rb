@@ -11,6 +11,9 @@ class ClientController < ApplicationController
       other: params[:other],
       description: params[:description]
     )
+
+    # Sends email to user when user is created.
+    ClientMailer.email(client).deliver
   end
 
   def list
