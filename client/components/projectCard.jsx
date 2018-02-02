@@ -45,10 +45,8 @@ class ProjectCard extends React.Component {
             {repo.description}
           </CardBody>
           <CardFooter>
-            <a className='github-link' href={repo.html_url} target="_blank" >
-              <Button bsStyle="primary">
-                View On Github
-              </Button>
+            <a className='github-link btn btn-primary' href={repo.html_url} target="_blank" >
+              View On Github
             </a>
             {this.renderImages()}
           </CardFooter>

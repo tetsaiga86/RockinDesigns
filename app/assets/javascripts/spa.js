@@ -28685,11 +28685,9 @@ var Services = function (_React$Component) {
   _createClass(Services, [{
     key: 'loadServices',
     value: function loadServices() {
-      var serviceCards = [];
-      Object.keys(_services2.default).forEach(function (key) {
-        serviceCards.push(_react2.default.createElement(_servicesCard2.default, { key: key, service: _services2.default[key] }));
+      return _services2.default.map(function (service) {
+        return _react2.default.createElement(_servicesCard2.default, { key: service.name, service: service });
       });
-      return serviceCards;
     }
   }, {
     key: 'render',
@@ -29988,12 +29986,8 @@ var ProjectCard = function (_React$Component) {
             null,
             _react2.default.createElement(
               'a',
-              { className: 'github-link', href: repo.html_url, target: '_blank' },
-              _react2.default.createElement(
-                _reactBootstrap.Button,
-                { bsStyle: 'primary' },
-                'View On Github'
-              )
+              { className: 'github-link btn btn-primary', href: repo.html_url, target: '_blank' },
+              'View On Github'
             ),
             this.renderImages()
           )
@@ -30228,28 +30222,23 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = {
-  fullStack: {
-    name: 'Full Stack Web Developement',
-    description: 'Build your business or personal website from the ground up!',
-    footer: 'foobar'
-  },
-  android: {
-    name: 'Andorid App Developement',
-    description: "Have an idea for an Android app you'd like to see built? Or, maybe you want to be able to service customers more easily with an app dedicated to your business.",
-    footer: 'foobar'
-  },
-  windows: {
-    name: 'Windows App Developement',
-    description: 'Build a windows app for your business.',
-    footer: 'foobar'
-  },
-  guarantee: {
-    name: 'Quality Guarantee',
-    description: "My quality guarantee, is simply that: QUALITY. Any project I put my name on goes through extensive testing to insure the very best in production and thats why I offer free lifetime support for software you've already purchased.",
-    footer: 'foobar'
-  }
-};
+exports.default = [{
+  name: 'Full Stack Web Developement',
+  description: 'Build your business or personal website from the ground up!',
+  footer: 'foobar'
+}, {
+  name: 'Andorid App Developement',
+  description: "Have an idea for an Android app you'd like to see built? Or, maybe you want to be able to service customers more easily with an app dedicated to your business.",
+  footer: 'foobar'
+}, {
+  name: 'Windows App Developement',
+  description: 'Build a windows app for your business.',
+  footer: 'foobar'
+}, {
+  name: 'Quality Guarantee',
+  description: "My quality guarantee, is simply that: QUALITY. Any project I put my name on goes through extensive testing to insure the very best in production and thats why I offer free lifetime support for software you've already purchased.",
+  footer: 'foobar'
+}];
 
 /***/ }),
 /* 221 */

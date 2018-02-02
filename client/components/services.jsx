@@ -5,13 +5,7 @@ import ServicesCard from './servicesCard'
 
 class Services extends React.Component {
   loadServices(){
-    var serviceCards = [];
-    Object.keys(services).forEach((key) => {
-      serviceCards.push(
-        <ServicesCard key={key} service={services[key]}></ServicesCard>
-      )
-    })
-    return serviceCards
+    return services.map(service => <ServicesCard key={service.name} service={service} />)
   }
 
   render () {
